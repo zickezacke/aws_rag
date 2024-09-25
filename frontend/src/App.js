@@ -59,7 +59,13 @@ const App = (props) => {
   const handleSendQuestion = () => {
     setSpinner(true);
 
-    fetch(baseUrl + `?question=${question}`, {
+    let tempSessionId = sessionId
+    if (sessionId == undefined) {
+      tempSessionId = "None"
+    }
+    //https://2gqb4cnb2k.execute-api.us-west-2.amazonaws.com/dev/
+
+    fetch(baseUrl + `?question=${question}&session_id=${tempSessionId}`, {   //&session_id=${sessionId}
       method: "GET",
       headers: {
         "Content-Type": "application/json",
